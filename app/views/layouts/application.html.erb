@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Twitter</title>
+    <title>Birdie</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
+  <header>
+    <%= link_to image_tag("logo.png", alt: "Birdie", size:"150x150"), {controller: "pages", action:"home"}, {class: "websitelogo"} %>
+  </header>
+
+  <nav id="hoizontalNav">
+    <%= link_to "Home", {controller: "pages", action:"home"} %>
+    <%= link_to "Feed", {controller: "tweets", action:"index"} %>
+    <%= link_to "Login", {controller: "users", action:"index"} %>
+  </nav>
 
   <body>
     <%= yield %>
