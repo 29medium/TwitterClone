@@ -8,8 +8,8 @@ class BirdsController < ApplicationController
     @birds = Bird.all
   end
 
-  def myfeed
-    @birds = Bird.select()
+  def myshow
+    @birds = Bird.all
   end
 
   # GET /birds/1

@@ -16,6 +16,7 @@
   <nav id="hoizontalNav">
     <%= link_to "Home", "/" %>
     <%= link_to "Feed", "/birds" %>
+    <%= link_to "My Feed", "/birds/myshow" %>
     <% if current_user %>
       <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
     <% else %>
