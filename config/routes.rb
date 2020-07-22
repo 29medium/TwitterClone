@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'birds/myshow'
-  resources :birds
+  resources :birds do
+    resources :comments
+    end
   root to: 'pages#home'
   devise_for :users
   

@@ -16,7 +16,7 @@
       <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
         <td><%= bird.body %></td>
         <td><%= bird.user.username %></td>
-        <td><%= link_to 'Show', bird %></td>
+        <td><%= link_to 'Show', bird_path(bird.id) %></td>
         <% if current_user == bird.user %>
           <td><%= link_to 'Edit', edit_bird_path(bird) %></td>
           <td><%= link_to 'Destroy', bird, method: :delete, data: { confirm: 'Are you sure?' } %></td>

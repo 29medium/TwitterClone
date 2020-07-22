@@ -8,5 +8,38 @@
   <%= @bird.user.username %>
 </p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bird.comments.each do |comment| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+        <td><%= comment.body %></td>
+        <td><%= comment.user.username %></td>
+        <% if current_user == comment.user || current_user == @bird.user %>
+          <td><%# link_to 'Destroy', '/birds/:bird_id/comments/:id(.:format)' , method: :delete %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Add a Comment</h2>
+<%= form_for([@bird, Comment.new]) do |f| %>
+  <p>
+    <%= f.label :body%><br>
+    <%= f.text_area :body%>
+  </p>
+  <p>
+    <%= f.submit%>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_bird_path(@bird) %> |
 <%= link_to 'Back', birds_path %>
