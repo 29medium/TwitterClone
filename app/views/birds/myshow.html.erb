@@ -13,7 +13,7 @@
 
   <tbody>
     <% @birds.each do |bird| %>
-      <tr>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
         <% if current_user == bird.user %>
             <td><%= bird.body %></td>
             <td><%= bird.user.username %></td>
