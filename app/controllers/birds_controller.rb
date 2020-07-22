@@ -8,10 +8,6 @@ class BirdsController < ApplicationController
     @birds = Bird.all
   end
 
-  def myshow
-    @birds = Bird.all
-  end
-
   # GET /birds/1
   # GET /birds/1.json
   def show

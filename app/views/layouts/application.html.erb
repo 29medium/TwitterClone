@@ -17,9 +17,10 @@
   </header>
 
   <nav id="horizontalNav">
-    <%= link_to "Home", "/" %>
-    <%= link_to "Feed", "/birds" %>
-    <%= link_to "My Feed", "/birds/myshow" %>
+    <%= link_to "Home", root_path %>
+    <%= link_to "Feed", birds_path %>
+    <%= link_to "MyFeed", myfeed_user_path(current_user.id) %>
+    <%= link_to "Friends", root_path %>
     <% if current_user %>
       <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
     <% else %>

@@ -1,27 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Feed</h1>
+<h1>MyFeed</h1>
 
 <table>
   <thead>
     <tr>
       <th>Body</th>
       <th>User</th>
+      <th>Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @birds.each do |bird| %>
+    <% @user_birds.reverse.each do |bird| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+        <td><%= bird.body %></td>
+        <td><%= bird.user.username %></td>
+        <td><%= bird.created_at.strftime("%d/%m/%Y\n%k:%M") %></td>            
+        <td><%= link_to 'Show', bird_path(bird.id) %></td>
         <% if current_user == bird.user %>
-            <td><%= bird.body %></td>
-            <td><%= bird.user.username %></td>
-            <td><%= link_to 'Show', bird %></td>
-            <td><%= link_to 'Edit', edit_bird_path(bird) %></td>
+            <td><%= link_to 'Edit', edit_bird_path(bird) %></td>                
             <td><%= link_to 'Destroy', bird, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-      </tr>
+        </tr>
     <% end %>
   </tbody>
 </table>

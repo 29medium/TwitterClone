@@ -6,9 +6,24 @@ class CommentsController < ApplicationController
         # Create and save comment
         @comment = @bird.comments.new(comment_params)
         @comment.user = current_user
-        
-        # Go to the bird this comment is associated with
-        redirect_to bird_path(@bird)
+
+        respond_to do |format|
+            if @bird.save
+              format.html { redirect_to bird_path(@bird), notice: 'Comment was successfully created.' }
+              format.json { render :show, status: :created, location: @bird }
+            else
+              format.html { render :new }
+              format.json { render json: @bird.errors, status: :unprocessable_entity }
+            end
+          end
+    end
+
+    def destroy
+        @comment.destroy
+        respond_to do |format|
+            format.html { redirect_to @bird, notice: 'Comment was successfully destroyed.' }
+            format.json { head :no_content }
+        end
     end
 
     private
