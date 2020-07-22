@@ -10,16 +10,21 @@
   </head>
 
   <header>
-    <%= link_to image_tag("logo.png", alt: "Birdie", size:"150x150"), {controller: "pages", action:"home"}, {class: "websitelogo"} %>
+    <%= link_to image_tag("logo.png", alt: "Birdie", size:"150x150"), "/", {class: "websitelogo"} %>
   </header>
 
   <nav id="hoizontalNav">
-    <%= link_to "Home", {controller: "pages", action:"home"} %>
-    <%= link_to "Feed", {controller: "tweets", action:"index"} %>
-    <%= link_to "Login", {controller: "users", action:"index"} %>
+    <%= link_to "Home", "/" %>
+    <%= link_to "Feed", "/birds" %>
+    <% if current_user %>
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign in', new_user_session_path %>
+    <% end %>
   </nav>
 
   <body>
+    <%= render 'layouts/alerts'%>
     <%= yield %>
   </body>
 </html>
