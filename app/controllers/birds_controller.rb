@@ -66,12 +66,12 @@ class BirdsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_bird
-      @bird = Bird.find(params[:id])
-    end
+  def set_bird
+    @bird = Bird.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def bird_params
-      params.require(:bird).permit(:body)
-    end
+  def bird_params
+    params.require(:bird).permit(:body)
+  end
 end
