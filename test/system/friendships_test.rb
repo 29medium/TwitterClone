@@ -5,7 +5,7 @@ class FriendshipsTest < ApplicationSystemTestCase
     @friendship = friendships(:one)
   end
 
-  test "visiting the index" do
+  test "visiting the find_friends" do
     visit friendships_url
     assert_selector "h1", text: "Friendships"
   end

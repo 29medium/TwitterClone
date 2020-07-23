@@ -14,7 +14,8 @@
 </p>
 
 <% if current_user == @user %>
-  <%= link_to "Friends", friends_user_path(@user.id) %>
+  <%= link_to "Friend List", friends_user_path(@user.id) %>
+  <%= link_to "Find Friends",  find_friends_user_path(@user.id) %>
 <% end %>
 
 <h2>Personal Feed</h2>

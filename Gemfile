@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem "binding_of_caller"
+
+gem 'better_errors'
+
 gem 'pry-rails'
 
 gem 'devise'

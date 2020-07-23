@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'friends'
+      get 'find_friends'
     end
   end
 end

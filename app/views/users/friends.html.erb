@@ -3,9 +3,9 @@
     <thead>
       <tr>
         <th>Friend</th>
-<th colspan="3"></th>
+        <th colspan="3"></th>
       </tr>
-</thead>
+    </thead>
 
     <tbody>
     <% @friendships.each do |friendship| %>
@@ -13,13 +13,12 @@
         <td>
           <%= friendship.friend.username %>
         </td>
-<td>
-<%= link_to "Remove friend", friendship_path(user_id: current_user.id, friend_id: friendship.friend), method: :delete  %>
+        <td>
+          <%= link_to "Remove friend", friendship_path(user_id: current_user.id, friend_id: friendship.friend_id), method: :delete  %>
         </td>
       </tr>
     <% end %>
-    </tbody>
-  </table>
+  </tbody>
+</table>
 
-  <%= link_to "Find Friends", users_path %>
-<% end %>
+

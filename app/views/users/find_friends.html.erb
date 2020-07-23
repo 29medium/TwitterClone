@@ -1,7 +1,7 @@
 <h1><%= content_for(:title, "People") %></h1>
 <p id="notice"><%= notice %></p>
 
-<h1>People</h1>
+<h1>Find Friends</h1>
 
 <table>
   <thead>
@@ -16,7 +16,9 @@
     <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
       <td><%= user.username %></td>
       <td><%= link_to 'Profile', user_path(user.id) %></td>
-      <td><%= link_to 'Add Friend', friendships_path(user_id: current_user.id, friend_id: user.id), method: :post %></td>
+      <% unless current_user.exists_friendship?(user.id) %>
+        <td><%= link_to 'Add Friend', friendships_path(user_id: current_user.id, friend_id: user.id), method: :post %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

@@ -5,7 +5,7 @@ class FriendshipsControllerTest < ActionDispatch::IntegrationTest
     @friendship = friendships(:one)
   end
 
-  test "should get index" do
+  test "should get find_friends" do
     get friendships_url
     assert_response :success
   end
