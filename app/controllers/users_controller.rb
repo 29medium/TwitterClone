@@ -1,13 +1,18 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show]
+  before_action :authenticate_user!
+
   def index
     @users = User.all
   end
 
   def show
-    @user = current_user
+    @user_birds = User.find(params[:id]).birds
   end
 
-  def myfeed
-    @user_birds = User.find(params[:id]).birds
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

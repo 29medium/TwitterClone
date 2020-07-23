@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :set_comment, only: [:destroy]
+
   def create
     @bird = Bird.find(params[:bird_id])
 
@@ -17,15 +19,19 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment=Comment.find(params[:id])
+    bird = @comment.bird
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to @bird, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to bird, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-    private
+  private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:body)

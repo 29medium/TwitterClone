@@ -1,30 +1,19 @@
 class BirdsController < ApplicationController
   before_action :set_bird, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :index] 
+  before_action :authenticate_user!
 
-  # GET /birds
-  # GET /birds.json
   def index
     @birds = Bird.all
   end
 
-  # GET /birds/1
-  # GET /birds/1.json
-  def show
-    @bird = Bird.find(params[:id])
-  end
+  def show; end
 
-  # GET /birds/new
   def new
     @bird = Bird.new
   end
-
-  # GET /birds/1/edit
-  def edit
-  end
-
-  # POST /birds
-  # POST /birds.json
+  
+  def edit; end
+  
   def create
     @bird = Bird.new(bird_params)
     @bird.user = current_user
@@ -39,9 +28,7 @@ class BirdsController < ApplicationController
       end
     end
   end
-
-  # PATCH/PUT /birds/1
-  # PATCH/PUT /birds/1.json
+  
   def update
     respond_to do |format|
       if @bird.update(bird_params)
@@ -54,8 +41,6 @@ class BirdsController < ApplicationController
     end
   end
 
-  # DELETE /birds/1
-  # DELETE /birds/1.json
   def destroy
     @bird.destroy
     respond_to do |format|
@@ -65,12 +50,11 @@ class BirdsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
   def set_bird
     @bird = Bird.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
   def bird_params
     params.require(:bird).permit(:body)
   end
