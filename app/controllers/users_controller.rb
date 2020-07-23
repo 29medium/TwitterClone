@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def friends
+    @friendships = @user.friendships
+  end
+
   def show
     @user_birds = User.find(params[:id]).birds
   end

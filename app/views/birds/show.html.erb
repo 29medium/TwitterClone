@@ -1,3 +1,5 @@
+<h1><%= content_for(:title, "Show Bird") %></h1>
+
 <p>
   <strong>Body:</strong>
   <%= @bird.body %>
@@ -42,6 +44,10 @@
     <%= f.label :body%><br>
     <%= f.text_area :body%>
   </p>
+
+  <%= f.hidden_field :bird_id, value: @bird.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <p>
     <%= f.submit%>
   </p>

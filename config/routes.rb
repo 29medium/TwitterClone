@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :friendships
   resources :birds do
     resources :comments
   end
@@ -7,5 +8,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users
 
-  resources :users
+  resources :users do
+    member do
+      get 'friends'
+    end
+  end
 end
