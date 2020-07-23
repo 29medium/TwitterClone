@@ -8,13 +8,10 @@ class BirdsController < ApplicationController
     @birds = Bird.all
   end
 
-  def myfeed
-    @birds = Bird.select()
-  end
-
   # GET /birds/1
   # GET /birds/1.json
   def show
+    @bird = Bird.find(params[:id])
   end
 
   # GET /birds/new

@@ -9,13 +9,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <body>
+  <div id="wrapper">
+
   <header>
-    <%= link_to image_tag("logo.png", alt: "Birdie", size:"150x150"), "/", {class: "websitelogo"} %>
+    <%= link_to image_tag("logo.png", alt: "Birdie", size:"240x126"), "/", {class: "websitelogo"} %>
   </header>
 
-  <nav id="hoizontalNav">
-    <%= link_to "Home", "/" %>
-    <%= link_to "Feed", "/birds" %>
+  <nav id="horizontalNav">
+    <%= link_to "Home", root_path %>
+    <%= link_to "Feed", birds_path %>
+    <%= link_to "MyFeed", myfeed_user_path(current_user.id) %>
+    <%= link_to "Friends", root_path %>
     <% if current_user %>
       <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
     <% else %>
@@ -23,8 +28,12 @@
     <% end %>
   </nav>
 
-  <body>
+  <main id="content">
     <%= render 'layouts/alerts'%>
     <%= yield %>
+  </main>
+
   </body>
+  
+  </div>
 </html>
