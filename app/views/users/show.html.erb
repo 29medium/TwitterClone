@@ -1,0 +1,60 @@
+<h1><%= content_for(:title, "Profile") %></h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Profile</h1>
+
+<p>
+  <strong>User:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Following:</strong>
+  <%= @user.friendships.size %>
+</p>
+
+<% if current_user == @user %>
+  <%= link_to "Following", friends_user_path(@user.id) %>
+  <%= link_to "Find Users",  find_friends_user_path(@user.id) %>
+<% end %>
+
+<% if current_user.exists_friendship?(@user) || @user == current_user %>
+
+<h2>Personal Feed</h2>
+
+<% if @user_birds.empty? %>
+  <strong> You don't have any posts </strong>
+<% else %>
+  <table>
+    <thead>
+    <tr>
+      <th>Body</th>
+      <th>User</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @user_birds.reverse.each do |bird| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+        <td><%= bird.body %></td>
+        <td><%= bird.user.username %></td>
+        <td><%= bird.created_at.strftime("%d/%m/%Y\n%k:%M") %></td>
+        <td><%= link_to 'Extend', bird_path(bird.id) %></td>
+        <% if current_user == bird.user %>
+          <td><%= link_to 'Edit', edit_bird_path(bird) %></td>
+          <td><%= link_to 'Delete', bird, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% end %>

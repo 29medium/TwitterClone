@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :friendships
   resources :birds do
     resources :comments
   end
@@ -9,8 +10,8 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get 'myfeed'
+      get 'friends'
+      get 'find_friends'
     end
   end
-  
 end

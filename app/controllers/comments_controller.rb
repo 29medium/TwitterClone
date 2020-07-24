@@ -1,34 +1,28 @@
 class CommentsController < ApplicationController
-    def create
-        # Get Bird comment is attached to
-        @bird = Bird.find(params[:bird_id])
-
-        # Create and save comment
-        @comment = @bird.comments.new(comment_params)
-        @comment.user = current_user
-
-        respond_to do |format|
-            if @bird.save
-              format.html { redirect_to bird_path(@bird), notice: 'Comment was successfully created.' }
-              format.json { render :show, status: :created, location: @bird }
-            else
-              format.html { render :new }
-              format.json { render json: @bird.errors, status: :unprocessable_entity }
-            end
-          end
+  before_action :set_comment, only: [:destroy]
+  
+  def create
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      redirect_to bird_path(@comment.bird), notice: 'Comment was successfully created.'
+    else
+      redirect_to bird_path(@comment.bird), notice: 'Unnable to comment.'
     end
+  end
 
-    def destroy
-        @comment.destroy
-        respond_to do |format|
-            format.html { redirect_to @bird, notice: 'Comment was successfully destroyed.' }
-            format.json { head :no_content }
-        end
-    end
+  def destroy
+    bird = @comment.bird
+    @comment.destroy
+    redirect_to bird, notice: 'Comment was successfully destroyed.'
+  end
 
-    private
+  private
 
-    def comment_params
-        params.require(:comment).permit(:body)
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body, :bird_id, :user_id)
+  end
 end

@@ -1,3 +1,5 @@
+<h1><%= content_for(:title, "Show Bird") %></h1>
+
 <p>
   <strong>Body:</strong>
   <%= @bird.body %>
@@ -8,6 +10,9 @@
   <%= @bird.user.username %>
 </p>
 
+<% if @bird.comments.empty? %>
+  <strong> There are no comments </strong>
+<% else %>
 <table>
   <thead>
     <tr>
@@ -25,12 +30,13 @@
         <td><%= comment.user.username %></td>
         <td><%= comment.created_at.strftime("%d/%m/%Y\n%k:%M") %></td>
         <% if current_user == comment.user || current_user == @bird.user %>
-          <td><%= link_to 'Destroy', '/birds/:bird_id/comments/:id(.:format)' , method: :delete %></td>
+          <td><%= link_to 'Delete',  bird_comment_path(bird_id: comment.bird_id, id: comment.id) , method: :delete %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 <h2>Add a Comment</h2>
 <%= form_for([@bird, Comment.new]) do |f| %>
@@ -38,6 +44,10 @@
     <%= f.label :body%><br>
     <%= f.text_area :body%>
   </p>
+
+  <%= f.hidden_field :bird_id, value: @bird.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <p>
     <%= f.submit%>
   </p>

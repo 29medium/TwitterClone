@@ -5,7 +5,7 @@ class BirdsTest < ApplicationSystemTestCase
     @bird = birds(:one)
   end
 
-  test "visiting the index" do
+  test "visiting the find_friends" do
     visit birds_url
     assert_selector "h1", text: "Birds"
   end
