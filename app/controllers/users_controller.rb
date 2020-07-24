@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def find_friends
-    @users = User.all
+    @users = User.all.reject{|user| user == current_user}
   end
 
   def friends

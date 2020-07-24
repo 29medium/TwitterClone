@@ -30,7 +30,7 @@
         <td><%= comment.user.username %></td>
         <td><%= comment.created_at.strftime("%d/%m/%Y\n%k:%M") %></td>
         <% if current_user == comment.user || current_user == @bird.user %>
-          <td><%= link_to 'Destroy',  bird_comment_path(bird_id: comment.bird_id, id: comment.id) , method: :delete %></td>
+          <td><%= link_to 'Delete',  bird_comment_path(bird_id: comment.bird_id, id: comment.id) , method: :delete %></td>
         <% end %>
       </tr>
     <% end %>

@@ -13,10 +13,17 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <strong>Following:</strong>
+  <%= @user.friendships.size %>
+</p>
+
 <% if current_user == @user %>
-  <%= link_to "Friend List", friends_user_path(@user.id) %>
-  <%= link_to "Find Friends",  find_friends_user_path(@user.id) %>
+  <%= link_to "Following", friends_user_path(@user.id) %>
+  <%= link_to "Find Users",  find_friends_user_path(@user.id) %>
 <% end %>
+
+<% if current_user.exists_friendship?(@user) || @user == current_user %>
 
 <h2>Personal Feed</h2>
 
@@ -39,13 +46,15 @@
         <td><%= bird.body %></td>
         <td><%= bird.user.username %></td>
         <td><%= bird.created_at.strftime("%d/%m/%Y\n%k:%M") %></td>
-        <td><%= link_to 'Show', bird_path(bird.id) %></td>
+        <td><%= link_to 'Extend', bird_path(bird.id) %></td>
         <% if current_user == bird.user %>
           <td><%= link_to 'Edit', edit_bird_path(bird) %></td>
-          <td><%= link_to 'Destroy', bird, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', bird, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
     </tbody>
   </table>
+<% end %>
+
 <% end %>

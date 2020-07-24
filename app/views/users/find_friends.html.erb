@@ -1,8 +1,11 @@
-<h1><%= content_for(:title, "People") %></h1>
+<h1><%= content_for(:title, "Find Users") %></h1>
 <p id="notice"><%= notice %></p>
 
-<h1>Find Friends</h1>
+<h1>Find Users</h1>
 
+<% if @users.empty? %>
+  <p>There are no more users. It´s just me, myself and I</p>
+<% else %>
 <table>
   <thead>
   <tr>
@@ -17,9 +20,10 @@
       <td><%= user.username %></td>
       <td><%= link_to 'Profile', user_path(user.id) %></td>
       <% unless current_user.exists_friendship?(user.id) %>
-        <td><%= link_to 'Add Friend', friendships_path(user_id: current_user.id, friend_id: user.id), method: :post %></td>
+        <td><%= link_to 'Follow', friendships_path(user_id: current_user.id, friend_id: user.id), method: :post %></td>
       <% end %>
     </tr>
   <% end %>
   </tbody>
 </table>
+<% end %>

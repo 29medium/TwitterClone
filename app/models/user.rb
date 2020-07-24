@@ -13,4 +13,5 @@ class User < ApplicationRecord
   def exists_friendship?(friend_id)
     Friendship.exists?(user_id: id, friend_id: friend_id)
   end
+
 end

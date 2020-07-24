@@ -39,6 +39,11 @@
     color: white;
 }
 
+#horizontalNav a:hover {
+    background-color: #0099ff;
+    color: black;
+}
+
 .websitelogo {
     float: center;
     text-decoration: none;

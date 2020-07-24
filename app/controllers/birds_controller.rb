@@ -3,7 +3,7 @@ class BirdsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @birds = Bird.all
+    @birds = Bird.all.select{|bird| current_user.exists_friendship?(bird.user)}
   end
 
   def show; end
