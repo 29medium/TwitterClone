@@ -1,24 +1,9 @@
-# README
+# TwitterClone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project was developed in my Yarilabs Summer Internship.
+The objective of this project was to understand the fundamentals of Ruby on Rails.
 
-Things you may want to cover:
+# Authors
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Paulo Sousa [@29medium](https://github.com/29medium).
+- Ruben Lucas [@86gumball](https://github.com/86gumball).
